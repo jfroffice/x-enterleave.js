@@ -131,12 +131,15 @@ p {
   background-color: #633e14; }
 
 .box, .box--leaving {
-  opacity: 0;
+  opacity: 0.2;
   -webkit-transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
   transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
   transition: all 0.7s ease-in-out;
   -webkit-transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
   -webkit-transition: all 0.7s ease-in-out; }
+
+.box--leaving:after {
+  content: "leaving"; }
 
 .box--entering {
   opacity: 0.8;
@@ -147,7 +150,25 @@ p {
   -webkit-transition: all 0.7s ease-in-out; }
 
 .box--entered {
-  color: blue;
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   -webkit-transition: all 0.7s ease-in-out; }
+
+.box:after {
+  float: right;
+  font-size: 0.9em;
+  margin-right: 1em;
+  margin-top: 1em;
+  text-shadow: 0 0 5px white; }
+
+.box--entering:after {
+  content: "entering"; }
+
+.box--entered:after {
+  content: "entered"; }
+
+.box--leaving:after {
+  content: "leaving"; }
+
+.box--leaved:after {
+  content: "leaved"; }
