@@ -4,9 +4,13 @@ am.sequencer = (function(prefix, viewport, undefined) {
 	function changeState(elm, inputs, outputs) {
 		var bFind;
 
+		var toRemove = [];
+
 		[].forEach.call(elm.classList, function(val) {
 			if (val.indexOf(inputs[0]) !== -1 ||
 				val.indexOf(inputs[1]) !== -1) {
+				console.log(toRemove);
+				toRemove.push(val);
 				elm.classList.remove(val);
 			} else if (val.indexOf('--') === -1) {
 				var tmp = val + outputs[0];

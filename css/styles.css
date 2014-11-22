@@ -54,7 +54,7 @@ html, body {
   margin: 0; }
 
 body {
-  background-color: #dccba0;
+  background-color: #000;
   font-family: "Open Sans", "Helvetica", sans-serif;
   font-size: 1em;
   font-weight: 400; }
@@ -100,9 +100,6 @@ p {
     width: 100%; }
  }
 
-.section {
-  padding: 2em; }
-
 .header span {
   display: inline-block;
   letter-spacing: -1px; }
@@ -112,20 +109,20 @@ p {
   top: 0;
   left: 0;
   color: #333;
-  font-size: 1.4em;
-  margin-left: 2em;
-  text-shadow: 1px 1px 3px white; }
+  font-size: 4vh;
+  margin-left: 10vw;
+  text-shadow: 1px 1px 5px #EEE; }
 
 .box {
-  width: 100%;
-  height: 6em;
+  width: 100vw;
+  height: 10vh;
   background-color: #15c7ef; }
 
 .box--dark {
   background-color: #cd5e30; }
 
 .box--light {
-  background-color: #ffffff; }
+  background-color: #FFF; }
 
 .box--light2 {
   background-color: #633e14; }
@@ -156,8 +153,8 @@ p {
 
 .box:after {
   float: right;
-  font-size: 0.9em;
-  margin-right: 1em;
+  font-size: 3vh;
+  margin-right: 2vw;
   margin-top: 1em;
   text-shadow: 0 0 5px white; }
 

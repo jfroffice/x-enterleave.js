@@ -6,14 +6,14 @@
 	top: 0;
 	left: 0;
 	color: #333;
-	font-size: 1.4em;
-	margin-left: 2em;
-	text-shadow: 1px 1px 3px white;
+	font-size: 4vh;
+	margin-left: 10vw;
+	text-shadow: 1px 1px 5px #EEE;
 }
 
 .box {
-	width: 100%;
-	height: 6em;
+	width: 100vw;
+	height: 10vh;
 	background-color: #15c7ef;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .box--light {
-	background-color: #ffffff;
+	background-color: #FFF;
 }
 
 .box--light2 {
@@ -58,8 +58,8 @@
 
 .box:after {
 	float: right;
-	font-size: 0.9em;
-	margin-right: 1em;
+	font-size: 3vh;
+	margin-right: 2vw;
 	margin-top: 1em;
 	text-shadow: 0 0 5px white;
 }
@@ -79,4 +79,3 @@
 .box--leaved:after {
 	content: "leaved";
 }
-
