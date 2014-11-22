@@ -1,15 +1,14 @@
-am.sequencer = (function(prefix, viewport, undefined) {
-	"use strict";
+'use strict';
+
+var am = am || {};
+am.sequencer = (function(prefix, viewport, events, undefined) {
 
 	function changeState(elm, inputs, outputs) {
 		var bFind;
-
 		var toRemove = [];
-
 		[].forEach.call(elm.classList, function(val) {
 			if (val.indexOf(inputs[0]) !== -1 ||
-				val.indexOf(inputs[1]) !== -1) {
-				console.log(toRemove);
+			    val.indexOf(inputs[1]) !== -1) {
 				toRemove.push(val);
 				elm.classList.remove(val);
 			} else if (val.indexOf('--') === -1) {
@@ -21,7 +20,8 @@ am.sequencer = (function(prefix, viewport, undefined) {
 				}
 			}
 		});
-
+		console.log('toRemove:');
+		console.log(toRemove);
 		return bFind;
 	}
 
@@ -30,7 +30,7 @@ am.sequencer = (function(prefix, viewport, undefined) {
 			[].forEach.call(elm.classList, function(val) {
 				if (val.indexOf(source) !== -1) {
 					elm.classList.remove(val);
-				// TODO: seems buggy for another modifer class !!!
+					// TODO: seems buggy for another modifer class !!!
 				} else if (val.indexOf('--') === -1) {
 					var tmp = val + target;
 					if (!elm.classList.contains(tmp)) {
@@ -40,30 +40,27 @@ am.sequencer = (function(prefix, viewport, undefined) {
 			});
 		});
 	}
-
 	return {
 		init: function(options) {
 			this.enterleave = options.enterleave;
 			this.element = options.element;
 			return this;
 		},
-		updateState: function(state, force) {
+		updateState: function() {
 			var elm = this.element;
-
 			if (viewport.isInside(elm)) {
-				if (changeState(elm, ['--leaving', '--leaved'],
+				if (changeState(elm, ['--leaving' , '--leaved'],
 									 ['--entering', '--entered'])) {
 					// entering -> entered
 					onTransitionChangeState(elm, '--entering', '--entered');
 				}
 			} else {
 				if (changeState(elm, ['--entering', '--entered'],
-								     ['--leaving', '--leaved'])) {
-
+									 ['--leaving' , '--leaved'])) {
 					onTransitionChangeState(elm, '--leaving', '--leaved');
 				}
 			}
 		}
 	};
 
-})(am.prefix, am.viewport);
+})(am.prefix, am.viewport, events);
