@@ -107,14 +107,13 @@ p {
 .header {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 1vw;
   color: #333;
   font-size: 4vh;
   margin-left: 10vw;
   text-shadow: 1px 1px 5px #EEE; }
 
 .box {
-  width: 100vw;
   height: 10vh;
   background-color: #d7dbe0; }
 

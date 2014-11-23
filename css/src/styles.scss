@@ -4,7 +4,7 @@
 .header {
 	position: fixed;
 	top: 0;
-	left: 0;
+	left: 1vw;
 	color: #333;
 	font-size: 4vh;
 	margin-left: 10vw;
@@ -12,7 +12,6 @@
 }
 
 .box {
-	width: 100vw;
 	height: 10vh;
 	background-color: #d7dbe0;
 }
