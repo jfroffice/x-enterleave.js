@@ -57,6 +57,7 @@ Roadmap
 
 Release History
 ---------------
+- v0.1.2: publish bower version
 - v0.1.1: simplify class state algorithm
 - v0.1.0: initial revision
 

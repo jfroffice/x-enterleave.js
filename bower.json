@@ -1,11 +1,12 @@
 {
   "name": "x-enterleave.js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/jfroffice/x-enterleave.js",
   "description": "HTML attribute to add dynamic CSS modifier on classes",
   "authors": [
     "jfroffice <me@jfroffice.me>"
   ],
+  "main": "dist/x-enterleave.js",
   "moduleType": [
     "globals"
   ],

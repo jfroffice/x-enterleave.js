@@ -1,6 +1,6 @@
 /**
  * x-enterleave.js - HTML attribute to add dynamic CSS modifier on classes
- * @version v0.1.0
+ * @version v0.1.2
  * @link https://github.com/jfroffice/x-enterleave.js
  * @license MIT
  */
