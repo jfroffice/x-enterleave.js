@@ -127,7 +127,7 @@ p {
 .box--light2 {
   background-color: #633e14; }
 
-.box, .box--leaving {
+.box, .box.leaving {
   opacity: 0.2;
   -webkit-transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
   transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
@@ -135,10 +135,10 @@ p {
   -webkit-transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
   -webkit-transition: all 0.7s ease-in-out; }
 
-.box--leaving:after {
+.box.leaving:after {
   content: "leaving"; }
 
-.box--entering {
+.box.entering {
   opacity: 0.8;
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
@@ -146,7 +146,7 @@ p {
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   -webkit-transition: all 0.7s ease-in-out; }
 
-.box--entered {
+.box.entered {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   -webkit-transition: all 0.7s ease-in-out; }
@@ -158,14 +158,17 @@ p {
   margin-top: 1em;
   text-shadow: 0 0 5px white; }
 
-.box--entering:after {
+.box.entering:after {
   content: "entering"; }
 
-.box--entered:after {
+.box.entered:after {
   content: "entered"; }
 
-.box--leaving:after {
+.box.leaving:after {
   content: "leaving"; }
 
-.box--leaved:after {
+.box.leaved:after {
   content: "leaved"; }
+
+.box--selected {
+  border: 2px solid red; }

@@ -1,10 +1,11 @@
-am.start = (function(sequencer, v, undefined) {
-	"use strict";
+'use strict';
+
+var am = am || {};
+am.start = (function(sequencer, v, events, undefined) {
 
 	var sequencers = [],
 		enterLeave;
 
-	// add DOMLoaded ?    cf github
 	events.on(window, 'load resize scroll', function() {
 		if (enterLeave) {
 			clearTimeout(enterLeave);
@@ -30,4 +31,4 @@ am.start = (function(sequencer, v, undefined) {
 		});
 	};
 
-})(am.sequencer, am.viewport);
+})(am.sequencer, am.viewport, this.events);

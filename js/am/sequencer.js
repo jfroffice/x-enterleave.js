@@ -3,43 +3,6 @@
 var am = am || {};
 am.sequencer = (function(prefix, viewport, events, undefined) {
 
-	function changeState(elm, inputs, outputs) {
-		var bFind;
-		var toRemove = [];
-		[].forEach.call(elm.classList, function(val) {
-			if (val.indexOf(inputs[0]) !== -1 ||
-			    val.indexOf(inputs[1]) !== -1) {
-				toRemove.push(val);
-				elm.classList.remove(val);
-			} else if (val.indexOf('--') === -1) {
-				var tmp = val + outputs[0];
-				if (!elm.classList.contains(tmp) &&
-					!elm.classList.contains(val + outputs[1])) {
-					elm.classList.add(tmp);
-					bFind = true;
-				}
-			}
-		});
-		console.log('toRemove:');
-		console.log(toRemove);
-		return bFind;
-	}
-
-	function onTransitionChangeState(elm, source, target) {
-		events.one(elm, prefix.TRANSITION_END_EVENT, function() {
-			[].forEach.call(elm.classList, function(val) {
-				if (val.indexOf(source) !== -1) {
-					elm.classList.remove(val);
-					// TODO: seems buggy for another modifer class !!!
-				} else if (val.indexOf('--') === -1) {
-					var tmp = val + target;
-					if (!elm.classList.contains(tmp)) {
-						elm.classList.add(tmp);
-					}
-				}
-			});
-		});
-	}
 	return {
 		init: function(options) {
 			this.enterleave = options.enterleave;
@@ -49,15 +12,41 @@ am.sequencer = (function(prefix, viewport, events, undefined) {
 		updateState: function() {
 			var elm = this.element;
 			if (viewport.isInside(elm)) {
-				if (changeState(elm, ['--leaving' , '--leaved'],
-									 ['--entering', '--entered'])) {
-					// entering -> entered
-					onTransitionChangeState(elm, '--entering', '--entered');
+
+				elm.classList.remove('leaving');
+				elm.classList.remove('leaved');
+
+				if (!elm.classList.contains('entering') &&
+					!elm.classList.contains('entered')) {
+
+					elm.classList.add('entering');
+					events.one(elm, prefix.TRANSITION_END_EVENT, function() {
+
+						// force clean
+						elm.classList.remove('leaved');
+
+						elm.classList.remove('entering');
+						elm.classList.add('entered');
+					});
 				}
+
 			} else {
-				if (changeState(elm, ['--entering', '--entered'],
-									 ['--leaving' , '--leaved'])) {
-					onTransitionChangeState(elm, '--leaving', '--leaved');
+
+				elm.classList.remove('entering');
+				elm.classList.remove('entered');
+
+				if (!elm.classList.contains('leaving') &&
+					!elm.classList.contains('leaved')) {
+
+					elm.classList.add('leaving');
+					events.one(elm, prefix.TRANSITION_END_EVENT, function() {
+
+						// force clean
+						elm.classList.remove('entered');
+
+						elm.classList.remove('leaving');
+						elm.classList.add('leaved');
+					});
 				}
 			}
 		}
