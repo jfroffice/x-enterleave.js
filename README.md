@@ -1,10 +1,16 @@
 x-enterleave.js
 ===============
-super fast and simple HTML attribute to add CSS classes .entering .entered .leaving .leaved to any DOM element
+###super fast and simple HTML attribute to add CSS classes .entering .entered .leaving .leaved to any DOM element
 
 - None Dependency
 - Developed for modern browsers
 - 1.8KB minified and Gzipped
+
+***
+
+### [→ Demo ←](http://jfroffice.github.io/x-enterleave.js/)
+
+***
 
 How to start 
 ------------ 
