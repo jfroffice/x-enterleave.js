@@ -162,43 +162,28 @@ am.viewport = (function() {
 
 })();
 
-am.sequencer = (function(prefix, viewport, undefined) {
-	"use strict";
+'use strict';
 
-	function changeState(elm, inputs, outputs) {
-		var bFind;
+var am = am || {};
+am.sequencer = (function(prefix, viewport, events, undefined) {
 
-		[].forEach.call(elm.classList, function(val) {
-			if (val.indexOf(inputs[0]) !== -1 ||
-				val.indexOf(inputs[1]) !== -1) {
-				elm.classList.remove(val);
-			} else if (val.indexOf('--') === -1) {
-				var tmp = val + outputs[0];
-				if (!elm.classList.contains(tmp) &&
-					!elm.classList.contains(val + outputs[1])) {
-					elm.classList.add(tmp);
-					bFind = true;
-				}
-			}
-		});
+	function update(elm, from, from2, to, to2) {
+		elm.classList.remove(from);
+		elm.classList.remove(from2);
 
-		return bFind;
-	}
+		if (!elm.classList.contains(to) &&
+			!elm.classList.contains(to2)) {
 
-	function onTransitionChangeState(elm, source, target) {
-		events.one(elm, prefix.TRANSITION_END_EVENT, function() {
-			[].forEach.call(elm.classList, function(val) {
-				if (val.indexOf(source) !== -1) {
-					elm.classList.remove(val);
-				// TODO: seems buggy for another modifer class !!!
-				} else if (val.indexOf('--') === -1) {
-					var tmp = val + target;
-					if (!elm.classList.contains(tmp)) {
-						elm.classList.add(tmp);
-					}
-				}
+			elm.classList.add(to);
+			events.one(elm, prefix.TRANSITION_END_EVENT, function() {
+
+				// force clean
+				elm.classList.remove(from2);
+
+				elm.classList.remove(to);
+				elm.classList.add(to2);
 			});
-		});
+		}
 	}
 
 	return {
@@ -207,34 +192,26 @@ am.sequencer = (function(prefix, viewport, undefined) {
 			this.element = options.element;
 			return this;
 		},
-		updateState: function(state, force) {
+		updateState: function() {
 			var elm = this.element;
-
 			if (viewport.isInside(elm)) {
-				if (changeState(elm, ['--leaving', '--leaved'],
-									 ['--entering', '--entered'])) {
-					// entering -> entered
-					onTransitionChangeState(elm, '--entering', '--entered');
-				}
+				update(elm, 'leaving', 'leaved', 'entering', 'entered');
 			} else {
-				if (changeState(elm, ['--entering', '--entered'],
-								     ['--leaving', '--leaved'])) {
-
-					onTransitionChangeState(elm, '--leaving', '--leaved');
-				}
+				update(elm, 'entering', 'entered', 'leaving', 'leaved');
 			}
 		}
 	};
 
-})(am.prefix, am.viewport);
+})(am.prefix, am.viewport, events);
 
-am.start = (function(sequencer, v, undefined) {
-	"use strict";
+'use strict';
+
+var am = am || {};
+am.start = (function(sequencer, v, events, undefined) {
 
 	var sequencers = [],
 		enterLeave;
 
-	// add DOMLoaded ?    cf github
 	events.on(window, 'load resize scroll', function() {
 		if (enterLeave) {
 			clearTimeout(enterLeave);
@@ -260,4 +237,4 @@ am.start = (function(sequencer, v, undefined) {
 		});
 	};
 
-})(am.sequencer, am.viewport);
+})(am.sequencer, am.viewport, this.events);

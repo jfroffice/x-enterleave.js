@@ -1,6 +1,6 @@
 {
   "name": "x-enterleave.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/jfroffice/x-enterleave.js",
   "description": "HTML attribute to add dynamic CSS modifier on classes",
   "authors": [
@@ -11,21 +11,21 @@
   ],
   "license": "MIT",
   "ignore": [
-      "**/.*",
-      "node_modules",
-      "bower_components",
-      "components",
-      "test",
-      "tests"
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
   ],
   "keywords": [
-      "component",
-      "enter",
-      "leave",
-      "viewport",
-      "enterleave",
-      "animation",
-      "css",
-      "reveal"
+    "component",
+    "enter",
+    "leave",
+    "viewport",
+    "enterleave",
+    "animation",
+    "css",
+    "reveal"
   ]
 }
