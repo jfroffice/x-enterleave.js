@@ -3,6 +3,25 @@
 var am = am || {};
 am.sequencer = (function(prefix, viewport, events, undefined) {
 
+	function update(elm, from, from2, to, to2) {
+		elm.classList.remove(from);
+		elm.classList.remove(from2);
+
+		if (!elm.classList.contains(to) &&
+			!elm.classList.contains(to2)) {
+
+			elm.classList.add(to);
+			events.one(elm, prefix.TRANSITION_END_EVENT, function() {
+
+				// force clean
+				elm.classList.remove(from2);
+
+				elm.classList.remove(to);
+				elm.classList.add(to2);
+			});
+		}
+	}
+
 	return {
 		init: function(options) {
 			this.enterleave = options.enterleave;
@@ -12,42 +31,9 @@ am.sequencer = (function(prefix, viewport, events, undefined) {
 		updateState: function() {
 			var elm = this.element;
 			if (viewport.isInside(elm)) {
-
-				elm.classList.remove('leaving');
-				elm.classList.remove('leaved');
-
-				if (!elm.classList.contains('entering') &&
-					!elm.classList.contains('entered')) {
-
-					elm.classList.add('entering');
-					events.one(elm, prefix.TRANSITION_END_EVENT, function() {
-
-						// force clean
-						elm.classList.remove('leaved');
-
-						elm.classList.remove('entering');
-						elm.classList.add('entered');
-					});
-				}
-
+				update(elm, 'leaving', 'leaved', 'entering', 'entered');
 			} else {
-
-				elm.classList.remove('entering');
-				elm.classList.remove('entered');
-
-				if (!elm.classList.contains('leaving') &&
-					!elm.classList.contains('leaved')) {
-
-					elm.classList.add('leaving');
-					events.one(elm, prefix.TRANSITION_END_EVENT, function() {
-
-						// force clean
-						elm.classList.remove('entered');
-
-						elm.classList.remove('leaving');
-						elm.classList.add('leaved');
-					});
-				}
+				update(elm, 'entering', 'entered', 'leaving', 'leaved');
 			}
 		}
 	};
