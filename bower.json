@@ -21,7 +21,13 @@
   "keywords": [
     "component",
     "enter",
+    "entering",
+    "entered",
     "leave",
+    "leaving",
+    "leaved",
+    "scroll",
+    "resize",
     "viewport",
     "enterleave",
     "animation",
