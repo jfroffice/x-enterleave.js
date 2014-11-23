@@ -54,7 +54,7 @@ html, body {
   margin: 0; }
 
 body {
-  background-color: #000;
+  background-color: #d7dbe0;
   font-family: "Open Sans", "Helvetica", sans-serif;
   font-size: 1em;
   font-weight: 400; }
@@ -116,16 +116,22 @@ p {
 .box {
   width: 100vw;
   height: 10vh;
-  background-color: #15c7ef; }
+  background-color: #d7dbe0; }
 
-.box--dark {
-  background-color: #cd5e30; }
+.box--c1 {
+  background-color: #ab9eb4; }
 
-.box--light {
-  background-color: #FFF; }
+.box--c2 {
+  background-color: #4b5972; }
 
-.box--light2 {
-  background-color: #633e14; }
+.box--c3 {
+  background-color: #e53844; }
+
+.box--c4 {
+  background-color: #ee6666; }
+
+.box--c5 {
+  background-color: #f59150; }
 
 .box, .box.leaving {
   opacity: 0.2;
