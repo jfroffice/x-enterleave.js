@@ -4,39 +4,48 @@
 	<meta charset="UTF-8">
 	<title>x-enterleave.js</title>
 	<link rel="stylesheet" href="css/styles.css">
-    <script src='./dist/x-enterleave.min.js'></script>
+    <!-- <script src='./dist/x-enterleave.min.js'></script> -->
+    <script src="js/libs/events.js"></script>
+    <script src="js/core/prefix.js"></script>
+    <script src="js/core/viewport.js"></script>
+    <script src="js/am/sequencer.js"></script>
+    <script src="js/am/facade.js"></script>
     </head>
 <body>
 	<div class="container">
 		<div class="section">
-			<div x-enterleave class="box"></div>
-			<div x-enterleave class="box box--c1"></div>
-			<div x-enterleave class="box box--c2"></div>
-			<div x-enterleave class="box box--c3"></div>
-			<div x-enterleave class="box box--c4"></div>
-			<div x-enterleave class="box box--c5"></div>
-			<div x-enterleave class="box"></div>
-			<div x-enterleave class="box box--c1"></div>
-			<div x-enterleave class="box box--c2"></div>
-			<div x-enterleave class="box box--c3"></div>
-			<div x-enterleave class="box box--c4"></div>
-			<div x-enterleave class="box box--c5"></div>
-			<div x-enterleave class="box"></div>
-			<div x-enterleave class="box box--c1"></div>
-			<div x-enterleave class="box box--c2"></div>
-			<div x-enterleave class="box box--c3"></div>
-			<div x-enterleave class="box box--c4"></div>
-			<div x-enterleave class="box box--c5"></div>
-			<div x-enterleave class="box"></div>
-			<div x-enterleave class="box box--c1"></div>
-			<div x-enterleave class="box box--c2"></div>
-			<div x-enterleave class="box box--c3"></div>
-			<div x-enterleave class="box box--c4"></div>
-			<div x-enterleave class="box box--c5"></div>
+			<div x-enterleave x-transition class="box"></div>
 			<h1 class="header">x-enterleave.js</h1>
 			<a class="github" href="https://github.com/jfroffice/x-enterleave.js"><img src="./img/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 		</div>
 	</div>
+	<script>// select the target node
+	var target = document.querySelector('[x-transition]');
+
+	// create an observer instance
+	var observer = new MutationObserver(function(mutations) {
+	  mutations.forEach(function(mutation) {
+	    console.log(mutation.target.classList);
+
+	    var elm = mutation.target;
+
+	    if (elm.classList.contains('entering')) {
+		    events.one(elm, am.prefix.TRANSITION_END_EVENT, function() {
+
+		    	elm.classList.add(['entered']);
+		    	elm.classList.remove(['entering']);
+		    	console.log('transition end');
+		    });
+	    }
+	  });
+	});
+
+	// configuration of the observer:
+	var config = { attributes: true, childList: true, characterData: true };
+
+	// pass in the target node, as well as the observer options
+	observer.observe(target, config);
+	</script>
 	<script>am.start();</script>
 </body>
 </html>

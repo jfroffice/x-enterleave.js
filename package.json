@@ -41,7 +41,6 @@
       "js/libs/events.js",
       "js/core/prefix.js",
       "js/core/viewport.js",
-      "js/dom/parser.js",
       "js/am/sequencer.js",
       "js/am/facade.js"
     ]

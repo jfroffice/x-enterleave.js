@@ -11,14 +11,6 @@ am.sequencer = (function(prefix, viewport, events, undefined) {
 			!elm.classList.contains(to2)) {
 
 			elm.classList.add(to);
-			events.one(elm, prefix.TRANSITION_END_EVENT, function() {
-
-				// force clean
-				elm.classList.remove(from2);
-
-				elm.classList.remove(to);
-				elm.classList.add(to2);
-			});
 		}
 	}
 
