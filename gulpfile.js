@@ -26,7 +26,7 @@ gulp.task('sass', function() {
 
 gulp.task('connect', function() {
     $.connect.server({
-        root: '.',
+        root: require('path').resolve('./'),
         port: port,
         livereload: true
     });
