@@ -63,5 +63,4 @@ Release History
 
 License
 -------
-Copyright (c) 2014 John Fischer
-Licensed under the MIT license.
+MIT
