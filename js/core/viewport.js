@@ -1,3 +1,6 @@
+'use strict';
+
+var am = am || {};
 am.viewport = (function() {
 	"use strict";
 

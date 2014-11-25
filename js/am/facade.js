@@ -1,12 +1,12 @@
 'use strict';
 
 var am = am || {};
-am.start = (function(sequencer, v, events, undefined) {
+am.start = (function(sequencer, v, onEvent, undefined) {
 
 	var sequencers = [],
 		enterLeave;
 
-	events.on(window, 'load resize scroll', function() {
+	onEvent(window, 'load resize scroll', function() {
 		if (enterLeave) {
 			clearTimeout(enterLeave);
 		}
@@ -31,4 +31,4 @@ am.start = (function(sequencer, v, events, undefined) {
 		});
 	};
 
-})(am.sequencer, am.viewport, this.events);
+})(am.sequencer, am.viewport, this.onEvent);

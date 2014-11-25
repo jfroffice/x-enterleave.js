@@ -1,22 +1,13 @@
 /**
  * x-enterleave.js - HTML attribute to add dynamic CSS modifier on classes
- * @version v0.1.2
+ * @version v0.1.3
  * @link https://github.com/jfroffice/x-enterleave.js
  * @license MIT
  */
 // Event helper from jsCore v0.6.1 github.com/Octane/jsCore
-var events = (function() {
+var onEvent = (function(undefined) {
 
-    function off(eventDetails) {
-       eventDetails.eventTypes.forEach(function (eventType) {
-           eventDetails.element.removeEventListener(
-               eventType,
-               eventDetails.callback
-               );
-       });
-    }
-
-    function on(element, selector, eventTypes, callback) {
+    return function(element, selector, eventTypes, callback) {
        var listener;
        if (arguments.length == 3) {
            callback = eventTypes;
@@ -51,72 +42,11 @@ var events = (function() {
        };
     }
 
-    function one(element, selector, eventTypes, callback) {
-       var details;
-       function listener(event) {
-           off(details);
-           if (callback.handleEvent) {
-               callback.handleEvent(event);
-           } else {
-               callback.call(element, event);
-           }
-       }
-       if (arguments.length == 3) {
-           callback = eventTypes;
-           eventTypes = selector;
-           selector = undefined;
-       }
-       details = on(element, selector, eventTypes, listener);
-    }
-
-    return {
-        one: one,
-        on: on,
-        off: off
-    };
-
 })();
 
-var am = {};
-am.prefix = (function() {
-	"use strict";
+'use strict';
 
-	var ANIMATION_END_EVENTS = {
-			'WebkitAnimation': 'webkitAnimationEnd',
-			'OAnimation': 'oAnimationEnd',
-			'msAnimation': 'MSAnimationEnd',
-			'animation': 'animationend'
-		},
-		TRANSITION_END_EVENTS = {
-			'WebkitTransition': 'webkitTransitionEnd',
-			'OTransition': 'oTransitionEnd',
-			'msTransition': 'MSTransitionEnd',
-			'transition': 'transitionend'
-		};
-
-	function getPrefix(name) {
-		var b = document.body || document.documentElement,
-			s = b.style,
-			v = ['Moz', 'Webkit', 'Khtml', 'O', 'ms'],
-			p = name;
-
-		if(typeof s[p] == 'string')
-			return name;
-
-		p = p.charAt(0).toUpperCase() + p.substr(1);
-		for( var i=0; i<v.length; i++ ) {
-			if(typeof s[v[i] + p] == 'string')
-				return v[i] + p;
-		}
-		return false;
-	}
-
-	return {
-		TRANSITION_END_EVENT: TRANSITION_END_EVENTS[getPrefix('transition')],
-		ANIMATION_END_EVENT: ANIMATION_END_EVENTS[getPrefix('animation')]
-	};
-
-})();
+var am = am || {};
 am.viewport = (function() {
 	"use strict";
 
@@ -165,24 +95,13 @@ am.viewport = (function() {
 'use strict';
 
 var am = am || {};
-am.sequencer = (function(prefix, viewport, events, undefined) {
+am.sequencer = (function(viewport, undefined) {
 
-	function update(elm, from, from2, to, to2) {
+	function update(elm, from, to) {
 		elm.classList.remove(from);
-		elm.classList.remove(from2);
 
-		if (!elm.classList.contains(to) &&
-			!elm.classList.contains(to2)) {
-
+		if (!elm.classList.contains(to)) {
 			elm.classList.add(to);
-			events.one(elm, prefix.TRANSITION_END_EVENT, function() {
-
-				// force clean
-				elm.classList.remove(from2);
-
-				elm.classList.remove(to);
-				elm.classList.add(to2);
-			});
 		}
 	}
 
@@ -195,24 +114,24 @@ am.sequencer = (function(prefix, viewport, events, undefined) {
 		updateState: function() {
 			var elm = this.element;
 			if (viewport.isInside(elm)) {
-				update(elm, 'leaving', 'leaved', 'entering', 'entered');
+				update(elm, 'leaving', 'entering');
 			} else {
-				update(elm, 'entering', 'entered', 'leaving', 'leaved');
+				update(elm, 'entering', 'leaving');
 			}
 		}
 	};
 
-})(am.prefix, am.viewport, events);
+})(am.viewport);
 
 'use strict';
 
 var am = am || {};
-am.start = (function(sequencer, v, events, undefined) {
+am.start = (function(sequencer, v, onEvent, undefined) {
 
 	var sequencers = [],
 		enterLeave;
 
-	events.on(window, 'load resize scroll', function() {
+	onEvent(window, 'load resize scroll', function() {
 		if (enterLeave) {
 			clearTimeout(enterLeave);
 		}
@@ -237,4 +156,4 @@ am.start = (function(sequencer, v, events, undefined) {
 		});
 	};
 
-})(am.sequencer, am.viewport, this.events);
+})(am.sequencer, am.viewport, this.onEvent);

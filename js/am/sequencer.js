@@ -1,24 +1,13 @@
 'use strict';
 
 var am = am || {};
-am.sequencer = (function(prefix, viewport, events, undefined) {
+am.sequencer = (function(viewport, undefined) {
 
-	function update(elm, from, from2, to, to2) {
+	function update(elm, from, to) {
 		elm.classList.remove(from);
-		elm.classList.remove(from2);
 
-		if (!elm.classList.contains(to) &&
-			!elm.classList.contains(to2)) {
-
+		if (!elm.classList.contains(to)) {
 			elm.classList.add(to);
-			events.one(elm, prefix.TRANSITION_END_EVENT, function() {
-
-				// force clean
-				elm.classList.remove(from2);
-
-				elm.classList.remove(to);
-				elm.classList.add(to2);
-			});
 		}
 	}
 
@@ -31,11 +20,11 @@ am.sequencer = (function(prefix, viewport, events, undefined) {
 		updateState: function() {
 			var elm = this.element;
 			if (viewport.isInside(elm)) {
-				update(elm, 'leaving', 'leaved', 'entering', 'entered');
+				update(elm, 'leaving', 'entering');
 			} else {
-				update(elm, 'entering', 'entered', 'leaving', 'leaved');
+				update(elm, 'entering', 'leaving');
 			}
 		}
 	};
 
-})(am.prefix, am.viewport, events);
+})(am.viewport);

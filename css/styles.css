@@ -144,15 +144,10 @@ p {
   content: "leaving"; }
 
 .box.entering {
-  opacity: 0.8;
+  opacity: 1.0;
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   transition: all 0.7s ease-in-out;
-  -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-  -webkit-transition: all 0.7s ease-in-out; }
-
-.box.entered {
-  opacity: 1;
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   -webkit-transition: all 0.7s ease-in-out; }
 
@@ -166,14 +161,8 @@ p {
 .box.entering:after {
   content: "entering"; }
 
-.box.entered:after {
-  content: "entered"; }
-
 .box.leaving:after {
   content: "leaving"; }
-
-.box.leaved:after {
-  content: "leaved"; }
 
 .box--selected {
   border: 2px solid red; }
