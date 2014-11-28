@@ -1,6 +1,6 @@
 x-enterleave.js
 ===============
-###super fast and simple HTML attribute to add CSS classes .entering .leaving to any DOM element
+###super fast and simple HTML attribute to add CSS classes .enter .leave to any DOM element
 
 - None Dependency
 - Developed for modern browsers
@@ -38,7 +38,7 @@ Add x-enterleave in you DOM
 	transition: all 0.7s ease-in-out;
 }
 
-.box.entering {
+.box.enter {
   opacity: 1.0;
   transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   transition: all 0.7s ease-in-out;
@@ -51,6 +51,7 @@ Roadmap
 
 Release History
 ---------------
+- v0.1.4: remove onEvent binding
 - v0.1.3: remove transition binding
 - v0.1.2: publish bower version
 - v0.1.1: simplify class state algorithm
