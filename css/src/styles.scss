@@ -37,7 +37,7 @@
 }
 
 .box,
-.box.leaving {
+.box.leave {
 	opacity: 0.2;
 	transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
 	transition: all 0.7s ease-in-out;
@@ -45,20 +45,14 @@
 	-webkit-transition: all 0.7s ease-in-out;
 }
 
-.box.leaving:after {
-	content: "leaving";
+.box.leave:after {
+	content: "leave";
 }
 
-.box.entering {
-	opacity: 0.8;
+.box.enter {
+	opacity: 1.0;
 	transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
 	transition: all 0.7s ease-in-out;
-	-webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-	-webkit-transition: all 0.7s ease-in-out;
-}
-
-.box.entered {
-	opacity: 1;
 	-webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
 	-webkit-transition: all 0.7s ease-in-out;
 }
@@ -71,20 +65,12 @@
 	text-shadow: 0 0 5px white;
 }
 
-.box.entering:after {
-	content: "entering";
+.box.enter:after {
+	content: "enter";
 }
 
-.box.entered:after {
-	content: "entered";
-}
-
-.box.leaving:after {
-	content: "leaving";
-}
-
-.box.leaved:after {
-	content: "leaved";
+.box.leave:after {
+	content: "leave";
 }
 
 .box--selected {

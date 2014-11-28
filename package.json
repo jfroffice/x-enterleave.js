@@ -1,6 +1,6 @@
 {
   "name": "x-enterleave.js",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "HTML attribute to add dynamic CSS modifier on classes",
   "main": "gulpfile.js",
   "scripts": {
@@ -38,7 +38,6 @@
   },
   "path": {
     "js": [
-      "js/libs/onEvent.js",
       "js/core/viewport.js",
       "js/am/sequencer.js",
       "js/am/facade.js"

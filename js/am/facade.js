@@ -1,34 +1,39 @@
 'use strict';
 
 var am = am || {};
-am.start = (function(sequencer, v, onEvent, undefined) {
+am.start = (function (sequencer, v, undefined) {
 
-	var sequencers = [],
-		enterLeave;
+    var sequencers = [],
+        enterLeave;
 
-	onEvent(window, 'load resize scroll', function() {
-		if (enterLeave) {
-			clearTimeout(enterLeave);
-		}
+    function updateFn() {
 
-		enterLeave = setTimeout(function() {
-			sequencers.forEach(function(s) {
-				if (s.enterleave) {
-					s.updateState();
-				}
-			});
+        if (enterLeave) {
+            clearTimeout(enterLeave);
+        }
 
-		}, 10);
-	});
+        enterLeave = setTimeout(function () {
+            sequencers.forEach(function (s) {
+                if (s.enterleave) {
+                    s.updateState();
+                }
+            });
 
-	return function() {
-		[].forEach.call(document.querySelectorAll('[x-enterleave]'), function(element) {
-			sequencers.push(
-				Object.create(sequencer).init({
-					element: element,
-					enterleave: true
-				}));
-		});
-	};
+        }, 10);
+    }
 
-})(am.sequencer, am.viewport, this.onEvent);
+    window.addEventListener('load', updateFn);
+    window.addEventListener('resize', updateFn);
+    window.addEventListener('scroll', updateFn);
+
+    return function () {
+        [].forEach.call(document.querySelectorAll('[x-enterleave]'), function (element) {
+            sequencers.push(
+                Object.create(sequencer).init({
+                    element: element,
+                    enterleave: true
+                }));
+        });
+    };
+
+})(am.sequencer, am.viewport);

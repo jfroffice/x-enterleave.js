@@ -4,7 +4,7 @@
   font-style: normal;
   font-weight: 400;
   src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2) format('woff2');
-  unicode-range: U0 0FF, U131, U152 -153, U2C6, U2DA, U2DC, U2000 -206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+  unicode-range: U0 -0FF, U131, U152 -153, U2C6, U2DA, U2DC, U2000 -206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
 
 /*
 @font-face {
@@ -97,8 +97,7 @@ p {
 @media screen and (max-width: 960px) {
   .container {
     min-width: 0;
-    width: 100%; }
- }
+    width: 100%; } }
 
 .header span {
   display: inline-block;
@@ -132,7 +131,7 @@ p {
 .box--c5 {
   background-color: #f59150; }
 
-.box, .box.leaving {
+.box, .box.leave {
   opacity: 0.2;
   -webkit-transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
   transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
@@ -140,11 +139,11 @@ p {
   -webkit-transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
   -webkit-transition: all 0.7s ease-in-out; }
 
-.box.leaving:after {
-  content: "leaving"; }
+.box.leave:after {
+  content: "leave"; }
 
-.box.entering {
-  opacity: 1.0;
+.box.enter {
+  opacity: 1;
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   transition: all 0.7s ease-in-out;
@@ -158,11 +157,11 @@ p {
   margin-top: 1em;
   text-shadow: 0 0 5px white; }
 
-.box.entering:after {
-  content: "entering"; }
+.box.enter:after {
+  content: "enter"; }
 
-.box.leaving:after {
-  content: "leaving"; }
+.box.leave:after {
+  content: "leave"; }
 
 .box--selected {
   border: 2px solid red; }
