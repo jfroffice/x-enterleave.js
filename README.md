@@ -12,8 +12,8 @@ x-enterleave.js
 
 ***
 
-How to start 
------------- 
+How to start ?
+-------------- 
 Add JS dependency
 ```html
 <script src="../x-enterleave.min.js"></script>
@@ -24,8 +24,8 @@ At the end of DOM
 <script> am.start(); </script>
 ```
 
-How to use 
----------- 
+How to use ?
+------------
 Add x-enterleave in you DOM
 ```html
 <div class="box" x-enterleave></div>
@@ -39,9 +39,9 @@ Add x-enterleave in you DOM
 }
 
 .box.enter {
-  opacity: 1.0;
-  transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-  transition: all 0.7s ease-in-out;
+    opacity: 1.0;
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transition: all 0.7s ease-in-out;
 }
 ```
 
