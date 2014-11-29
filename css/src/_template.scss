@@ -1,6 +1,3 @@
-/* http://coolors.co/15c7ef-cd5e30-ffffff-dccba0-633e14 */
-/* http://coolors.co/112838-cd5e30-ffffff-dccba0-633e14 */
-
 * {
   box-sizing: border-box;
 
@@ -65,7 +62,7 @@ p {
 
 .container {
 	margin: 0 auto;
-	min-width: 1024px;
+	min-width: 960px;
 	width: 80%;
 	height: 100%;
 }
@@ -75,10 +72,6 @@ p {
 		min-width: 0;
 		width: 100%;
 	}
-}
-
-.section {
-
 }
 
 .header span {
