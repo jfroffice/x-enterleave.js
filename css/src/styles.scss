@@ -9,6 +9,7 @@
 	font-size: 4vh;
 	margin-left: 10vw;
 	text-shadow: 1px 1px 5px #EEE;
+    z-index: 1;
 }
 
 .box {
@@ -81,4 +82,20 @@
 	position: fixed;
 	top: 0;
 	right: 0;
+}
+
+.btn {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 20px;
+    background-color: #333;
+    color: #DDD;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: white;
 }

@@ -1,6 +1,6 @@
 /**
  * x-enterleave.js - HTML attribute to add dynamic CSS modifier on classes
- * @version v0.1.4
+ * @version v0.1.5
  * @link https://github.com/jfroffice/x-enterleave.js
  * @license MIT
  */
@@ -90,7 +90,7 @@ am.sequencer = (function (viewport, undefined) {
 var am = am || {};
 am.start = (function (sequencer, v, undefined) {
 
-    var sequencers = [],
+    var sequencers,
         enterLeave;
 
     function updateFn() {
@@ -109,11 +109,13 @@ am.start = (function (sequencer, v, undefined) {
         }, 10);
     }
 
-    window.addEventListener('load', updateFn);
     window.addEventListener('resize', updateFn);
     window.addEventListener('scroll', updateFn);
 
-    return function () {
+    return function (options) {
+
+        sequencers = [];
+
         [].forEach.call(document.querySelectorAll('[x-enterleave]'), function (element) {
             sequencers.push(
                 Object.create(sequencer).init({
@@ -121,6 +123,8 @@ am.start = (function (sequencer, v, undefined) {
                     enterleave: true
                 }));
         });
+
+        updateFn();
     };
 
 })(am.sequencer, am.viewport);

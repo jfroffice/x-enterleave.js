@@ -4,39 +4,38 @@
 	<meta charset="UTF-8">
 	<title>x-enterleave.js</title>
 	<link rel="stylesheet" href="css/styles.css">
-    <script src="./dist/x-enterleave.min.js"></script>
+
     </head>
 <body>
-	<div class="container">
-		<div x-enterleave class="box"></div>
-		<div x-enterleave class="box box--c1"></div>
-		<div x-enterleave class="box box--c2"></div>
-		<div x-enterleave class="box box--c3"></div>
-		<div x-enterleave class="box box--c4"></div>
-		<div x-enterleave class="box box--c5"></div>
-		<div x-enterleave class="box"></div>
-		<div x-enterleave class="box box--c1"></div>
-		<div x-enterleave class="box box--c2"></div>
-		<div x-enterleave class="box box--c3"></div>
-		<div x-enterleave class="box box--c4"></div>
-		<div x-enterleave class="box box--c5"></div>
-		<div x-enterleave class="box"></div>
-		<div x-enterleave class="box box--c1"></div>
-		<div x-enterleave class="box box--c2"></div>
-		<div x-enterleave class="box box--c3"></div>
-		<div x-enterleave class="box box--c4"></div>
-		<div x-enterleave class="box box--c5"></div>
-		<div x-enterleave class="box"></div>
-		<div x-enterleave class="box box--c1"></div>
-		<div x-enterleave class="box box--c2"></div>
-		<div x-enterleave class="box box--c3"></div>
-		<div x-enterleave class="box box--c4"></div>
-		<div x-enterleave class="box box--c5"></div>
-		<h1 class="header">x-enterleave.js</h1>
-		<a class="github" href="https://github.com/jfroffice/x-enterleave.js">
-            <img src="./img/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
-        </a>
-	</div>
-	<script>am.start();</script>
+    <div class="container">
+        <h1 class="header">x-enterleave.js</h1>
+        <div x-enterleave class="box"></div>
+        <div x-enterleave class="box box--c1"></div>
+        <div x-enterleave class="box box--c2"></div>
+        <div x-enterleave class="box box--c3"></div>
+        <div x-enterleave class="box box--c4"></div>
+        <div x-enterleave class="box box--c5"></div>
+    </div>
+    <a class="github" href="https://github.com/jfroffice/x-enterleave.js">
+        <img src="./img/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+    <a class="btn js-btn">add element</a>
+	<script src="./bower_components/jquery/dist/jquery.js"></script>
+    <script src="./dist/x-enterleave.min.js"></script>
+    <script>
+        am.start();
+
+        $('.js-btn').on('click', function() {
+
+            var $element = $('<div />');
+            $element
+                .addClass('box box--c' + ($('.box').length) % 6)
+                .attr('x-enterleave', '');
+
+            $('.container').append($element);
+
+            am.start();
+        });
+    </script>
 </body>
 </html>

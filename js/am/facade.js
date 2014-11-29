@@ -3,7 +3,7 @@
 var am = am || {};
 am.start = (function (sequencer, v, undefined) {
 
-    var sequencers = [],
+    var sequencers,
         enterLeave;
 
     function updateFn() {
@@ -22,11 +22,13 @@ am.start = (function (sequencer, v, undefined) {
         }, 10);
     }
 
-    window.addEventListener('load', updateFn);
     window.addEventListener('resize', updateFn);
     window.addEventListener('scroll', updateFn);
 
-    return function () {
+    return function (options) {
+
+        sequencers = [];
+
         [].forEach.call(document.querySelectorAll('[x-enterleave]'), function (element) {
             sequencers.push(
                 Object.create(sequencer).init({
@@ -34,6 +36,8 @@ am.start = (function (sequencer, v, undefined) {
                     enterleave: true
                 }));
         });
+
+        updateFn();
     };
 
 })(am.sequencer, am.viewport);
