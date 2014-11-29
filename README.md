@@ -1,5 +1,7 @@
 x-enterleave.js
 ===============
+[![Build Status](https://travis-ci.org/jfroffice/x-enterleave.js.svg?branch=master)](https://travis-ci.org/jfroffice/x-enterleave.js)
+
 ###super fast and simple HTML attribute to add CSS classes .enter .leave to any DOM element
 
 - None Dependency
