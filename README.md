@@ -53,6 +53,7 @@ Roadmap
 
 Release History
 ---------------
+- v0.1.5: add restart when DOM elements are added dynamically
 - v0.1.4: remove onEvent binding
 - v0.1.3: remove transition binding
 - v0.1.2: publish bower version
