@@ -16,14 +16,9 @@ x-enterleave.js
 
 How to start ?
 -------------- 
-Add JS dependency
+Load JS file
 ```html
 <script src="../x-enterleave.min.js"></script>
-```
-
-At the end of DOM
-```html
-<script> am.start(); </script>
 ```
 
 How to use ?
