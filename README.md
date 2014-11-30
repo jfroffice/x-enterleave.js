@@ -42,10 +42,6 @@ Add x-enterleave in you DOM
 }
 ```
 
-Roadmap
--------
-- Add live starting and remove am.start(); call
-
 Release History
 ---------------
 - v0.1.6 - bower version
