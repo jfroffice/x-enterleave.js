@@ -53,6 +53,7 @@ Roadmap
 
 Release History
 ---------------
+- v0.1.7 - update viewport element.isInside() computation
 - v0.1.6 - using MutationObserver to remove start() function
 - v0.1.5 - add restart when DOM elements are added dynamically
 - v0.1.4 - remove onEvent binding
