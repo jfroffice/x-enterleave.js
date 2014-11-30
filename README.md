@@ -6,7 +6,7 @@ x-enterleave.js
 
 - None Dependency
 - Developed for modern browsers
-- 1.2KB minified and Gzipped
+- 1.3KB minified and Gzipped
 
 ***
 

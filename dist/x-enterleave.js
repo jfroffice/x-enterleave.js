@@ -8,25 +8,16 @@
 
 var am = am || {};
 am.viewport = (function () {
-    "use strict";
 
-    function getOffset(elm) {
-        var offsetTop = 0,
-            offsetLeft = 0;
-
+    function getTopOffset(elm) {
+        var offsetTop = 0;
         do {
             if (!isNaN(elm.offsetTop)) {
                 offsetTop += elm.offsetTop;
             }
-            if (!isNaN(elm.offsetLeft)) {
-                offsetLeft += elm.offsetLeft;
-            }
         } while (elm = elm.offsetParent);
 
-        return {
-            top: offsetTop,
-            left: offsetLeft
-        };
+        return offsetTop;
     }
 
     function getViewportH() {
@@ -38,15 +29,16 @@ am.viewport = (function () {
 
     return {
         isInside: function (elm, h) {
-            var scrolled = window.pageYOffset,
-                viewed = scrolled + getViewportH(),
-                elH = elm.offsetHeight,
-                elTop = getOffset(elm).top,
-                elBottom = elTop + elH;
+            var topV = window.pageYOffset,
+                heightV = getViewportH(),
+                bottomV = topV + heightV,
+                height = elm.offsetHeight,
+                top = getTopOffset(elm);
 
             h = h || 0.5;
 
-            return (elTop + elH * h) <= viewed && (elBottom) >= scrolled ||
+            return ((top + height) >= (topV + h * height))
+                && (top <= (bottomV - h * height)) ||
                 (elm.currentStyle ? elm.currentStyle :
                     window.getComputedStyle(elm, null)).position == 'fixed';
         }
