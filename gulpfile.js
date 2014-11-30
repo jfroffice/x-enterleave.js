@@ -73,6 +73,11 @@ gulp.task('concat', function() {
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task('bower', function() {
+    gulp.src('./bower_components/jquery/dist/jquery.min.js')
+        .pipe(gulp.dest('dist'));
+});
+
 gulp.task('uglify', function() {
     gulp.src(['dist/' + pkg.name])
         .pipe($.uglify())
@@ -85,5 +90,5 @@ gulp.task('uglify', function() {
         .pipe(gulp.dest('dist'))
 });
 
-gulp.task('build', ['clean', 'concat', 'uglify']);
+gulp.task('build', ['clean', 'concat', 'bower', 'uglify']);
 gulp.task('release', ['bump', 'build', 'build']);
