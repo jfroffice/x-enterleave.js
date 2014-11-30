@@ -6,6 +6,10 @@
   "authors": [
     "jfroffice <me@jfroffice.me>"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jfroffice/x-enterleave.js.git"
+  },
   "main": "dist/x-enterleave.js",
   "moduleType": [
     "globals"
@@ -22,15 +26,12 @@
   "keywords": [
     "component",
     "enter",
-    "entering",
-    "entered",
     "leave",
-    "leaving",
-    "leaved",
     "scroll",
     "resize",
     "viewport",
     "enterleave",
+    "x-enterleave",
     "animation",
     "css",
     "reveal"
