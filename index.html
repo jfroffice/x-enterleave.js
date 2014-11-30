@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>x-enterleave.js</title>
 	<link rel="stylesheet" href="css/styles.css">
-
     </head>
 <body>
     <div class="container">
@@ -19,23 +18,33 @@
     <a class="github" href="https://github.com/jfroffice/x-enterleave.js">
         <img src="./img/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
     </a>
-    <a class="btn js-btn">add element</a>
-	<script src="./bower_components/jquery/dist/jquery.js"></script>
+    <div class="toolbar">
+        <a class="btn js-btn" data-param="add">add element</a>
+        <a class="btn js-btn" data-param="remove">remove element</a>
+    </div>
+    <script src="./bower_components/jquery/dist/jquery.js"></script>
     <script src="./dist/x-enterleave.min.js"></script>
+    <!--<script src="js/core/viewport.js"></script>
+    <script src="js/am/sequencer.js"></script>
+    <script src="js/am/facade.js"></script>-->
     <script>
-        am.start();
-
-        $('.js-btn').on('click', function() {
-
+    var action = {
+        add: function() {
             var $element = $('<div />');
             $element
                 .addClass('box box--c' + ($('.box').length) % 6)
                 .attr('x-enterleave', '');
 
             $('.container').append($element);
+        },
+        remove: function() {
+            $('.container .box:first').remove();
+        }
+    }
 
-            am.start();
-        });
+    $('.js-btn').on('click', function() {
+        action[ $(this).data('param')]();
+    });
     </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /**
  * x-enterleave.js - HTML attribute to add dynamic CSS modifier on classes
- * @version v0.1.5
+ * @version v0.1.6
  * @link https://github.com/jfroffice/x-enterleave.js
  * @license MIT
  */
@@ -90,11 +90,10 @@ am.sequencer = (function (viewport, undefined) {
 var am = am || {};
 am.start = (function (sequencer, v, undefined) {
 
-    var sequencers,
+    var sequencers = [],
         enterLeave;
 
     function updateFn() {
-
         if (enterLeave) {
             clearTimeout(enterLeave);
         }
@@ -109,22 +108,41 @@ am.start = (function (sequencer, v, undefined) {
         }, 10);
     }
 
-    window.addEventListener('resize', updateFn);
-    window.addEventListener('scroll', updateFn);
+    [].forEach.call(document.querySelectorAll('body'), function(element) {
 
-    return function (options) {
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
 
-        sequencers = [];
+                if (mutation.addedNodes.length || mutation.removedNodes.length) {
+                    var elements = document.querySelectorAll('[x-enterleave]');
+                    if (elements.length !== sequencers.length) {
 
-        [].forEach.call(document.querySelectorAll('[x-enterleave]'), function (element) {
-            sequencers.push(
-                Object.create(sequencer).init({
-                    element: element,
-                    enterleave: true
-                }));
+                        //console.log('update sequencers list');
+                        sequencers = [];
+                        [].forEach.call(elements, function (element) {
+                            sequencers.push(
+                                Object.create(sequencer).init({
+                                    element: element,
+                                    enterleave: true
+                                }));
+                        });
+
+                        //console.log(sequencers.length);
+                        updateFn();
+                    }
+                }
+            });
         });
 
-        updateFn();
-    };
+        observer.observe(element, {
+            attributes: true,
+            childList: true,
+            characterData: true,
+            subtree: true
+        });
+    });
+
+    window.addEventListener('resize', updateFn);
+    window.addEventListener('scroll', updateFn);
 
 })(am.sequencer, am.viewport);

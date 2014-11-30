@@ -138,16 +138,19 @@ p {
   top: 0;
   right: 0; }
 
-.btn {
+.toolbar {
   position: fixed;
   left: 0;
   bottom: 0;
-  margin: 20px;
+  margin: 20px 10px; }
+
+.btn {
   background-color: #333;
   color: #DDD;
   padding: 6px 10px;
+  margin: 0 6px;
   border-radius: 8px;
   cursor: pointer; }
 
 .btn:hover {
-  color: white; }
+  color: yellow; }
