@@ -16,7 +16,7 @@ x-enterleave.js
 
 How to start ?
 -------------- 
-Load JS file
+Load JS file anywhere
 ```html
 <script src="../x-enterleave.min.js"></script>
 ```
@@ -29,7 +29,8 @@ Add x-enterleave in you DOM
 ```
 
 ```css
-.box {
+.box,
+.box.leave {
 	opacity: 0.2;
 	transform: translate3d(-100px, 0, 0) scale3d(1.1, 1.1, 1);
 	transition: all 0.7s ease-in-out;
@@ -44,6 +45,7 @@ Add x-enterleave in you DOM
 
 Release History
 ---------------
+- v0.1.7 - allow library to be loaded in <head/>
 - v0.1.6 - bower version
 - v0.1.5
     - update viewport element.isInside() computation

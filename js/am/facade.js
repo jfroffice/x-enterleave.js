@@ -21,37 +21,40 @@ am.start = (function (sequencer, v, undefined) {
         }, 10);
     }
 
-    [].forEach.call(document.querySelectorAll('body'), function(element) {
+    window.addEventListener('load', function() {
 
-        var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
+        [].forEach.call(document.querySelectorAll('body'), function(element) {
 
-                if (mutation.addedNodes.length || mutation.removedNodes.length) {
-                    var elements = document.querySelectorAll('[x-enterleave]');
-                    if (elements.length !== sequencers.length) {
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
 
-                        //console.log('update sequencers list');
-                        sequencers = [];
-                        [].forEach.call(elements, function (element) {
-                            sequencers.push(
-                                Object.create(sequencer).init({
-                                    element: element,
-                                    enterleave: true
-                                }));
-                        });
+                    if (mutation.addedNodes.length || mutation.removedNodes.length) {
+                        var elements = document.querySelectorAll('[x-enterleave]');
+                        if (elements.length !== sequencers.length) {
 
-                        //console.log(sequencers.length);
-                        updateFn();
+                            //console.log('update sequencers list');
+                            sequencers = [];
+                            [].forEach.call(elements, function (element) {
+                                sequencers.push(
+                                    Object.create(sequencer).init({
+                                        element: element,
+                                        enterleave: true
+                                    }));
+                            });
+
+                            //console.log(sequencers.length);
+                            updateFn();
+                        }
                     }
-                }
+                });
             });
-        });
 
-        observer.observe(element, {
-            attributes: true,
-            childList: true,
-            characterData: true,
-            subtree: true
+            observer.observe(element, {
+                attributes: true,
+                childList: true,
+                characterData: true,
+                subtree: true
+            });
         });
     });
 
