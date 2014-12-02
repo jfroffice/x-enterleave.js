@@ -100,9 +100,9 @@ am.start = (function (sequencer, v, undefined) {
         }, 10);
     }
 
-    window.addEventListener('load', function() {
+  //  function init() {
 
-        [].forEach.call(document.querySelectorAll('body'), function(element) {
+        [].forEach.call(document.querySelectorAll('html'), function(element) {
 
             var observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
@@ -135,7 +135,10 @@ am.start = (function (sequencer, v, undefined) {
                 subtree: true
             });
         });
-    });
+   // }
+
+   // window.addEventListener('load', init);
+   // window.addEventListener('complete', init);
 
     window.addEventListener('resize', updateFn);
     window.addEventListener('scroll', updateFn);
