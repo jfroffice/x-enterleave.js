@@ -15,7 +15,7 @@ x-enterleave.js
 ***
 
 How to start ?
--------------- 
+--------------
 Load JS file anywhere
 ```html
 <script src="../x-enterleave.min.js"></script>
@@ -45,6 +45,7 @@ Add x-enterleave in you DOM
 
 Release History
 ---------------
+- v0.1.9 - simplify DOM on is ready
 - v0.1.8 - fix bug on safari
 - v0.1.7 - allow library to be loaded in <head/>
 - v0.1.6 - bower version
