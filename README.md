@@ -16,6 +16,9 @@ x-enterleave.js
 
 How to start ?
 --------------
+you can download it with NPM :
+
+`npm install x-enterleave.js`
 Load JS file anywhere
 ```html
 <script src="../x-enterleave.min.js"></script>
